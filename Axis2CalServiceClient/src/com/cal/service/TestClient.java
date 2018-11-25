@@ -1,5 +1,7 @@
 package com.cal.service;
 
+import com.ketan.service.MulServiceStub;
+
 public class TestClient {
 
 	public static void main(String[] args) throws Exception {
@@ -28,6 +30,19 @@ public class TestClient {
 		int result2 = res2.get_return();
 		
 		System.out.println("ADD RESULT IS: "+result+"\nSUB RESULT IS: "+result2);
+		
+		MulServiceStub stub3 = new MulServiceStub();
+		
+		MulServiceStub.Mul params3 = new MulServiceStub.Mul();
+		
+		params3.setI(10);
+		params3.setJ(15);
+		
+		MulServiceStub.MulResponse res3 = stub3.mul(params3);
+		
+		int result3 = res3.get_return();
+		
+		System.out.println("MUL RESULT IS: "+result3);
 	}
 
 }
