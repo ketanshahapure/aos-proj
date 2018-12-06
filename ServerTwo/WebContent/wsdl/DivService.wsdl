@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.aos.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.aos.com" xmlns:intf="http://service.aos.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.aos.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="div">
+    <complexType>
+     <sequence>
+      <element name="i" type="xsd:int"/>
+      <element name="j" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="divResponse">
+    <complexType>
+     <sequence>
+      <element name="divReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="divResponse">
+
+      <wsdl:part element="impl:divResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="divRequest">
+
+      <wsdl:part element="impl:div" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DivService">
+
+      <wsdl:operation name="div">
+
+         <wsdl:input message="impl:divRequest" name="divRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:divResponse" name="divResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DivServiceSoapBinding" type="impl:DivService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="div">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="divRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="divResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DivServiceService">
+
+      <wsdl:port binding="impl:DivServiceSoapBinding" name="DivService">
+
+         <wsdlsoap:address location="http://localhost:8081/ServerTwo/services/DivService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
