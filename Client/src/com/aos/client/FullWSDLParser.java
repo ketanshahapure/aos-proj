@@ -5,6 +5,7 @@ import java.io.StringReader;
 
 import javax.xml.namespace.QName;
 import javax.xml.soap.MessageFactory;
+import javax.xml.soap.Name;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPMessage;
@@ -16,16 +17,6 @@ import com.predic8.wsdl.Definitions;
 import com.predic8.wsdl.WSDLParser;
  
 public class FullWSDLParser {
-	
-	static String request = "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://service.aos.com\">\r\n" + 
-							"   <soap:Header/>\r\n" +
-							"   <soap:Body>\r\n" + 
-							"      <ser:add>\r\n" + 
-							"         <ser:i>142</ser:i>\r\n" + 
-							"         <ser:j>5</ser:j>\r\n" + 
-							"      </ser:add>\r\n" + 
-							"   </soap:Body>\r\n" + 
-							"</soap:Envelope>";
 
 	static String sdalbRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://service.sdalb.aos.com\">\r\n" + 
 								 "   <soapenv:Header/>\r\n" + 
@@ -34,7 +25,7 @@ public class FullWSDLParser {
 								 "   </soapenv:Body>\r\n" + 
 								 "</soapenv:Envelope>";
  
-	public void callSDALB() throws Exception {
+	public String callSDALB() throws Exception {
 		
         WSDLParser parser = new WSDLParser();
  
@@ -50,21 +41,25 @@ public class FullWSDLParser {
         
         SOAPMessage response = invoke(serviceName, portName, endpointUrl, SOAPAction, sdalbRequest);
         SOAPBody body = response.getSOAPBody();
-        if (body.hasFault()) {
-            System.out.println(body.getFault());
-        } else {
-            BufferedOutputStream out = new BufferedOutputStream(System.out);
-            response.writeTo(out);
-            out.flush();
-            System.out.println();
-        }
+        String val = body.getFirstChild().getFirstChild().getTextContent();
+        return val;
 	}
 	
-    public void callServices() throws Exception {
+    public String callServices(String wsdl, int firstParam, int secondParam) throws Exception {
+    	
+    	String request = "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://service.aos.com\">\r\n" + 
+					  	 "   <soap:Header/>\r\n" +
+					  	 "   <soap:Body>\r\n" + 
+					  	 "      <ser:add>\r\n" + 
+					  	 "         <ser:i>"+firstParam+"</ser:i>\r\n" + 
+					  	 "         <ser:j>"+secondParam+"</ser:j>\r\n" + 
+					  	 "      </ser:add>\r\n" + 
+					  	 "   </soap:Body>\r\n" + 
+					  	 "</soap:Envelope>";
+    	
         WSDLParser parser = new WSDLParser();
  
-        Definitions defs = parser.parse("http://localhost:8080/ServerOne/services/AddService?wsdl");
-        String wsdl = "http://localhost:8080/ServerOne/services/AddService?wsdl";
+        Definitions defs = parser.parse(wsdl);
         
         String targetNameSpace = defs.getTargetNamespace();
         //System.out.println(targetNameSpace);
@@ -75,14 +70,8 @@ public class FullWSDLParser {
         
         SOAPMessage response = invoke(serviceName, portName, endpointUrl, SOAPAction, request);
         SOAPBody body = response.getSOAPBody();
-        if (body.hasFault()) {
-            System.out.println(body.getFault());
-        } else {
-            BufferedOutputStream out = new BufferedOutputStream(System.out);
-            response.writeTo(out);
-            out.flush();
-            System.out.println();
-        }
+        String val = body.getFirstChild().getFirstChild().getTextContent();
+        return val;
     }
  
     public static SOAPMessage invoke(QName serviceName, QName portName, String endpointUrl, 
