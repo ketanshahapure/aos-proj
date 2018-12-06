@@ -27,15 +27,47 @@ public class FullWSDLParser {
 							"   </soap:Body>\r\n" + 
 							"</soap:Envelope>";
 
+	static String sdalbRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://service.sdalb.aos.com\">\r\n" + 
+								 "   <soapenv:Header/>\r\n" + 
+								 "   <soapenv:Body>\r\n" + 
+								 "      <ser:getAddress/>\r\n" + 
+								 "   </soapenv:Body>\r\n" + 
+								 "</soapenv:Envelope>";
  
-    public static void main(String[] args) throws Exception {
+	public void callSDALB() throws Exception {
+		
+        WSDLParser parser = new WSDLParser();
+ 
+        Definitions defs = parser.parse("http://localhost:8083/SDALB/services/GetAddress?wsdl");
+        String wsdl = "http://localhost:8083/SDALB/services/GetAddress?wsdl";
+        
+        String targetNameSpace = defs.getTargetNamespace();
+        //System.out.println(targetNameSpace);
+        QName serviceName = new QName(targetNameSpace, defs.getServices().get(0).getName());
+        QName portName = new QName(targetNameSpace, defs.getServices().get(0).getPorts().get(0).getName());
+        String endpointUrl = wsdl.replace("?wsdl", "");
+        String SOAPAction = defs.getBindings().get(0).getOperations().get(0).getOperation().getSoapAction();
+        
+        SOAPMessage response = invoke(serviceName, portName, endpointUrl, SOAPAction, sdalbRequest);
+        SOAPBody body = response.getSOAPBody();
+        if (body.hasFault()) {
+            System.out.println(body.getFault());
+        } else {
+            BufferedOutputStream out = new BufferedOutputStream(System.out);
+            response.writeTo(out);
+            out.flush();
+            System.out.println();
+        }
+	}
+	
+    public void callServices() throws Exception {
         WSDLParser parser = new WSDLParser();
  
         Definitions defs = parser.parse("http://localhost:8080/ServerOne/services/AddService?wsdl");
         String wsdl = "http://localhost:8080/ServerOne/services/AddService?wsdl";
         
         String targetNameSpace = defs.getTargetNamespace();
-        System.out.println(targetNameSpace);
+        //System.out.println(targetNameSpace);
         QName serviceName = new QName(targetNameSpace, defs.getServices().get(0).getName());
         QName portName = new QName(targetNameSpace, defs.getServices().get(0).getPorts().get(0).getName());
         String endpointUrl = wsdl.replace("?wsdl", "");
