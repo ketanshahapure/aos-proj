@@ -1,13 +1,10 @@
 package com.aos.client;
 
-import java.io.BufferedOutputStream;
 import java.io.StringReader;
 
 import javax.xml.namespace.QName;
 import javax.xml.soap.MessageFactory;
-import javax.xml.soap.Name;
 import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 import javax.xml.transform.stream.StreamSource;
@@ -91,7 +88,6 @@ public class FullWSDLParser {
         SOAPMessage message = messageFactory.createMessage();
 
         SOAPPart soapPart = message.getSOAPPart();
-        SOAPEnvelope envelope = soapPart.getEnvelope();
 
         StreamSource preppedMsgSrc = new StreamSource(new StringReader(data));
         soapPart.setContent(preppedMsgSrc);
