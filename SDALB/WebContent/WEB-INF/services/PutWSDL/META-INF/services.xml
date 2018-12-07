@@ -1,4 +1,4 @@
-<service name="GetAddress" >
+<service name="PutWSDL" >
 	<Description>
 		Please Type your service description here
 	</Description>
@@ -6,5 +6,5 @@
 		<messageReceiver mep="http://www.w3.org/ns/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
 		<messageReceiver  mep="http://www.w3.org/ns/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
 	</messageReceivers>
-	<parameter name="ServiceClass" locked="false">com.aos.sdalb.service.GetAddress</parameter>
+	<parameter name="ServiceClass" locked="false">com.aos.sdalb.service.PutWSDL</parameter>
 </service>

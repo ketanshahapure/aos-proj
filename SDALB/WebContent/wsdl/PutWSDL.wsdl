@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.sdalb.aos.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.sdalb.aos.com" xmlns:intf="http://service.sdalb.aos.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.sdalb.aos.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="main">
+    <complexType/>
+   </element>
+   <element name="mainResponse">
+    <complexType/>
+   </element>
+   <element name="storeWSDL">
+    <complexType>
+     <sequence>
+      <element name="serviceName" type="xsd:string"/>
+      <element name="WSDL" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="storeWSDLResponse">
+    <complexType/>
+   </element>
+   <element name="retrieveWSDL">
+    <complexType>
+     <sequence>
+      <element name="serviceName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retrieveWSDLResponse">
+    <complexType>
+     <sequence>
+      <element name="retrieveWSDLReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="printMap">
+    <complexType/>
+   </element>
+   <element name="printMapResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="retrieveWSDLResponse">
+
+      <wsdl:part element="impl:retrieveWSDLResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="printMapRequest">
+
+      <wsdl:part element="impl:printMap" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retrieveWSDLRequest">
+
+      <wsdl:part element="impl:retrieveWSDL" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="storeWSDLResponse">
+
+      <wsdl:part element="impl:storeWSDLResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="mainResponse">
+
+      <wsdl:part element="impl:mainResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="storeWSDLRequest">
+
+      <wsdl:part element="impl:storeWSDL" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="printMapResponse">
+
+      <wsdl:part element="impl:printMapResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="mainRequest">
+
+      <wsdl:part element="impl:main" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PutWSDL">
+
+      <wsdl:operation name="main">
+
+         <wsdl:input message="impl:mainRequest" name="mainRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:mainResponse" name="mainResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="storeWSDL">
+
+         <wsdl:input message="impl:storeWSDLRequest" name="storeWSDLRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:storeWSDLResponse" name="storeWSDLResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retrieveWSDL">
+
+         <wsdl:input message="impl:retrieveWSDLRequest" name="retrieveWSDLRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:retrieveWSDLResponse" name="retrieveWSDLResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="printMap">
+
+         <wsdl:input message="impl:printMapRequest" name="printMapRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:printMapResponse" name="printMapResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PutWSDLSoapBinding" type="impl:PutWSDL">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="main">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="mainRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="mainResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="storeWSDL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="storeWSDLRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="storeWSDLResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retrieveWSDL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="retrieveWSDLRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="retrieveWSDLResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="printMap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="printMapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="printMapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PutWSDLService">
+
+      <wsdl:port binding="impl:PutWSDLSoapBinding" name="PutWSDL">
+
+         <wsdlsoap:address location="http://localhost:8080/SDALB/services/PutWSDL"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
