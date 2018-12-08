@@ -47,4 +47,13 @@
     <servlet-name>AdminServlet</servlet-name>
     <url-pattern>/servlet/AdminServlet</url-pattern>
   </servlet-mapping>
+    <listener>
+    <listener-class>com.aos.service.AddService</listener-class>
+  </listener>
+    <listener>
+    <listener-class>com.aos.service.DivService</listener-class>
+  </listener>
+    <listener>
+    <listener-class>com.aos.service.ModService</listener-class>
+  </listener>
 </web-app>

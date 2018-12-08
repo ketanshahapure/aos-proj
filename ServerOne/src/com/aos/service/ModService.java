@@ -77,7 +77,7 @@ public class ModService implements ServletContextListener{
 			e.printStackTrace();
 		}
 		
-		System.out.println("WSDL is sent from mod service to service registry");
+		System.out.println("WSDL is sent from mod service on server1 to service registry");
 	
 	}
 

@@ -41,7 +41,7 @@ public class AddService implements ServletContextListener{
 			e.printStackTrace();
 		}
 		
-		System.out.println("WSDL deleted from Service registry on stopping service or failure of service");
+		System.out.println("WSDL for add service on server1 deleted from Service registry on stopping service or failure of service");
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class AddService implements ServletContextListener{
 			e.printStackTrace();
 		}
 		
-		System.out.println("WSDL is sent from add service");
+		System.out.println("WSDL is sent from add service on server1 to service registry");
 	
 	}
 }

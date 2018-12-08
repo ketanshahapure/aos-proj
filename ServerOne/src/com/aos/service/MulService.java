@@ -77,7 +77,7 @@ public class MulService implements ServletContextListener{
 			e.printStackTrace();
 		}
 		
-		System.out.println("WSDL is sent from mul service to service registry");
+		System.out.println("WSDL is sent from mul service on server1 to service registry");
 	
 	}
 
