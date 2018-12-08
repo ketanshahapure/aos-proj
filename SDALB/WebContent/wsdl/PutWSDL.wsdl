@@ -4,12 +4,6 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service.sdalb.aos.com" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="main">
-    <complexType/>
-   </element>
-   <element name="mainResponse">
-    <complexType/>
-   </element>
    <element name="storeWSDL">
     <complexType>
      <sequence>
@@ -36,9 +30,27 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </complexType>
    </element>
    <element name="printMap">
-    <complexType/>
+    <complexType>
+     <sequence>
+      <element name="sName" type="xsd:string"/>
+     </sequence>
+    </complexType>
    </element>
    <element name="printMapResponse">
+    <complexType>
+     <sequence>
+      <element name="printMapReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeWSDL">
+    <complexType>
+     <sequence>
+      <element name="serviceName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeWSDLResponse">
     <complexType/>
    </element>
   </schema>
@@ -60,6 +72,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="removeWSDLResponse">
+
+      <wsdl:part element="impl:removeWSDLResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="retrieveWSDLRequest">
 
       <wsdl:part element="impl:retrieveWSDL" name="parameters">
@@ -68,17 +88,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="storeWSDLResponse">
+   <wsdl:message name="removeWSDLRequest">
 
-      <wsdl:part element="impl:storeWSDLResponse" name="parameters">
+      <wsdl:part element="impl:removeWSDL" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="mainResponse">
+   <wsdl:message name="storeWSDLResponse">
 
-      <wsdl:part element="impl:mainResponse" name="parameters">
+      <wsdl:part element="impl:storeWSDLResponse" name="parameters">
 
       </wsdl:part>
 
@@ -100,27 +120,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="mainRequest">
-
-      <wsdl:part element="impl:main" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:portType name="PutWSDL">
-
-      <wsdl:operation name="main">
-
-         <wsdl:input message="impl:mainRequest" name="mainRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:mainResponse" name="mainResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="storeWSDL">
 
@@ -158,29 +158,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="removeWSDL">
+
+         <wsdl:input message="impl:removeWSDLRequest" name="removeWSDLRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removeWSDLResponse" name="removeWSDLResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="PutWSDLSoapBinding" type="impl:PutWSDL">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="main">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="mainRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="mainResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="storeWSDL">
 
@@ -236,13 +230,31 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="removeWSDL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeWSDLRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeWSDLResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:binding>
 
    <wsdl:service name="PutWSDLService">
 
       <wsdl:port binding="impl:PutWSDLSoapBinding" name="PutWSDL">
 
-         <wsdlsoap:address location="http://localhost:8080/SDALB/services/PutWSDL"/>
+         <wsdlsoap:address location="http://localhost:8083/SDALB/services/PutWSDL"/>
 
       </wsdl:port>
 

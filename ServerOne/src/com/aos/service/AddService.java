@@ -42,7 +42,6 @@ public class AddService implements ServletContextListener{
 		}
 		
 		System.out.println("WSDL deleted from Service registry on stopping service or failure of service");
-	
 	}
 
 	@Override

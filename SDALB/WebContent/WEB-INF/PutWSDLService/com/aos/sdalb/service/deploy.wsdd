@@ -10,8 +10,6 @@
       <parameter name="className" value="com.aos.sdalb.service.PutWSDL"/>
       <parameter name="wsdlPortType" value="PutWSDL"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://service.sdalb.aos.com" name="main" qname="operNS:main" soapAction="">
-      </operation>
       <operation xmlns:operNS="http://service.sdalb.aos.com" name="storeWSDL" qname="operNS:storeWSDL" soapAction="">
         <parameter xmlns:pns="http://service.sdalb.aos.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:serviceName" type="tns:string"/>
         <parameter xmlns:pns="http://service.sdalb.aos.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:WSDL" type="tns:string"/>
@@ -19,9 +17,13 @@
       <operation xmlns:operNS="http://service.sdalb.aos.com" xmlns:retNS="http://service.sdalb.aos.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="retrieveWSDL" qname="operNS:retrieveWSDL" returnQName="retNS:retrieveWSDLReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://service.sdalb.aos.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:serviceName" type="tns:string"/>
       </operation>
-      <operation xmlns:operNS="http://service.sdalb.aos.com" name="printMap" qname="operNS:printMap" soapAction="">
+      <operation xmlns:operNS="http://service.sdalb.aos.com" xmlns:retNS="http://service.sdalb.aos.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="printMap" qname="operNS:printMap" returnQName="retNS:printMapReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.sdalb.aos.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sName" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="printMap main retrieveWSDL storeWSDL"/>
+      <operation xmlns:operNS="http://service.sdalb.aos.com" name="removeWSDL" qname="operNS:removeWSDL" soapAction="">
+        <parameter xmlns:pns="http://service.sdalb.aos.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:serviceName" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="removeWSDL printMap retrieveWSDL storeWSDL"/>
 
   </service>
 </deployment>

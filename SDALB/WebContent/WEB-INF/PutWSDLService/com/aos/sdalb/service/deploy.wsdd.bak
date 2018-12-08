@@ -20,8 +20,6 @@
       <parameter name="className" value="com.aos.sdalb.service.PutWSDLSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="PutWSDL"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="main" qname="operNS:main" xmlns:operNS="http://service.sdalb.aos.com" soapAction="" >
-      </operation>
       <operation name="storeWSDL" qname="operNS:storeWSDL" xmlns:operNS="http://service.sdalb.aos.com" soapAction="" >
         <parameter qname="pns:serviceName" xmlns:pns="http://service.sdalb.aos.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:WSDL" xmlns:pns="http://service.sdalb.aos.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
@@ -29,9 +27,13 @@
       <operation name="retrieveWSDL" qname="operNS:retrieveWSDL" xmlns:operNS="http://service.sdalb.aos.com" returnQName="retNS:retrieveWSDLReturn" xmlns:retNS="http://service.sdalb.aos.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:serviceName" xmlns:pns="http://service.sdalb.aos.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <operation name="printMap" qname="operNS:printMap" xmlns:operNS="http://service.sdalb.aos.com" soapAction="" >
+      <operation name="printMap" qname="operNS:printMap" xmlns:operNS="http://service.sdalb.aos.com" returnQName="retNS:printMapReturn" xmlns:retNS="http://service.sdalb.aos.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:sName" xmlns:pns="http://service.sdalb.aos.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="printMap main retrieveWSDL storeWSDL"/>
+      <operation name="removeWSDL" qname="operNS:removeWSDL" xmlns:operNS="http://service.sdalb.aos.com" soapAction="" >
+        <parameter qname="pns:serviceName" xmlns:pns="http://service.sdalb.aos.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="removeWSDL printMap retrieveWSDL storeWSDL"/>
 
   </service>
 </deployment>

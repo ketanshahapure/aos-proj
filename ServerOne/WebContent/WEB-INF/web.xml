@@ -38,6 +38,15 @@
     <url-pattern>/axis2-admin/*</url-pattern>
   </servlet-mapping>
   <listener>
-    <listener-class>AddService</listener-class>
-</listener>
+    <listener-class>com.aos.service.AddService</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>com.aos.service.SubService</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>com.aos.service.MulService</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>com.aos.service.ModService</listener-class>
+  </listener>
 </web-app>
