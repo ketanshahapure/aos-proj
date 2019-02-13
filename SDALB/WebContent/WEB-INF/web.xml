@@ -47,4 +47,7 @@
     <servlet-name>AdminServlet</servlet-name>
     <url-pattern>/servlet/AdminServlet</url-pattern>
   </servlet-mapping>
+  <listener>
+    <listener-class>com.aos.sdalb.service.PutWSDL</listener-class>
+  </listener>  
 </web-app>

@@ -9,11 +9,13 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.axis2.AxisFault;
 
+import com.aos.sdalb.service.PutWSDL2Stub;
 import com.aos.sdalb.service.PutWSDLStub;
 
 public class ModService implements ServletContextListener{
 
 	public int mod(int i, int j) {
+		System.out.println("Mod Service on server1 called");
 		return i%j;
 	}
 
@@ -22,42 +24,57 @@ public class ModService implements ServletContextListener{
 		// TODO Auto-generated method stub
 
 		PutWSDLStub stub = null;
+		PutWSDL2Stub stub2 = null;
 		try {
 			stub = new PutWSDLStub();
+			stub2 = new PutWSDL2Stub();
 		} catch (AxisFault e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		PutWSDLStub.RemoveWSDL params = new PutWSDLStub.RemoveWSDL();
+		PutWSDL2Stub.RemoveWSDL params2 = new PutWSDL2Stub.RemoveWSDL();
 		
 		params.setServiceName("mod1");
+		params2.setServiceName("mod1");
 		
 				
 		try {
 			stub.removeWSDL(params);
+			stub2.removeWSDL(params2);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			try {
+				stub2.removeWSDL(params2);
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
-		System.out.println("WSDL for Mod service on server1 deleted from Service registry on stopping service or failure of service");
+		System.out.println("WSDL for mod service on server1 deleted from Service registry on stopping service or failure of service");
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 
 		PutWSDLStub stub = null;
+		PutWSDL2Stub stub2 = null;
 		try {
 			stub = new PutWSDLStub();
+			stub2 = new PutWSDL2Stub();
 		} catch (AxisFault e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		PutWSDLStub.StoreWSDL params = new PutWSDLStub.StoreWSDL();
+		PutWSDL2Stub.StoreWSDL params2 = new PutWSDL2Stub.StoreWSDL();
 		
 		params.setServiceName("mod1");
+		params2.setServiceName("mod1");
 		
 		InetAddress ip;
 		try {
@@ -65,6 +82,7 @@ public class ModService implements ServletContextListener{
 			//Sending own WSDL
 			String wsdl = "http://"+ip.getHostAddress()+":8080/ServerOne/services/ModService?wsdl";
 			params.setWSDL(wsdl);
+			params2.setWSDL(wsdl);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,9 +90,16 @@ public class ModService implements ServletContextListener{
 		
 		try {
 			stub.storeWSDL(params);
+			stub2.storeWSDL(params2);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			try {
+				stub2.storeWSDL(params2);
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 		System.out.println("WSDL is sent from mod service on server1 to service registry");
