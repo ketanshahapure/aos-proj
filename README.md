@@ -1,4 +1,4 @@
-# aos-proj
+# Advanced Operating Systems Project
 Developed a distributed system which implements Service Discovery, Load Balancing, Handling of partial failures, 
 Recovery from total failures as part of the coursework using Java and Apache Axis2.
 The project consists of four application servers which have multiple services replicated four times. There are two gateway or intermediate
